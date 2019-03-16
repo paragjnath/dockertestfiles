@@ -1,0 +1,23 @@
+version: '3'
+
+volumes:
+  whatsappMedia:
+    driver: local
+  mysqlData:
+    driver: local
+
+services:
+  db:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: testpass
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    expose:
+        - "33060"
+    ports:
+        - "33060:3306"
+    volumes:
+     - mysqlData:/var/lib/mysql
+    network_mode: bridge
